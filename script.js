@@ -107,7 +107,6 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
             .attr("fill", "steelblue")
             .attr("opacity", 0.7);
 
-        // Remove circles that are no longer in the filtered data
         circles.exit().transition().duration(500).remove();
 
         if (mustAnnotate) {
@@ -604,7 +603,7 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
             .append("path")
             .attr("d", "M 0 0 L 10 5 L 0 10 z")
             .attr("fill", "black");
-            
+
         updateEngineCylinders();
         
     }
