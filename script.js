@@ -116,8 +116,6 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
             const minCar = data.find(d => +d.AverageHighwayMPG === minData);
             const maxCar = data.find(d => +d.AverageHighwayMPG === maxData);
 
-
-
             svg.append("text")
             .attr("x", 10)
             .attr("y", 20)
