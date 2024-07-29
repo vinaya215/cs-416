@@ -263,10 +263,10 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
 
         const texts = [
             "Thinking about getting a new car? This scatterplot will show you detailed information on cars from 2017.",
-            "Each circle represents a car model. The size of the circle corresponds to the number of engine cylinders that car has. The x-axis is the average city MPG and the y-axis is the average highway MPG of each car in the dataset.",
+            "Each circle represents a car. The size of the circle corresponds to the number of engine cylinders that car has. The x-axis is the average city MPG and the y-axis is the average highway MPG of each car in the dataset.",
             "When you look at all the data, you will see that the lowest average highway MPG is 16 and highest is 122.",
             "If you aren't looking for a specific make, the car make with the best highway and city MPG would be Hyundai!",
-            "You can hover over any circle to see the detailed information about that car. Click next scene to move on."
+            "You can hover over any circle to see the detailed information about that car. After that, click next scene to move on."
             
         ];
 
@@ -510,7 +510,7 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
         const maxCar = data.find(d => +d.AverageHighwayMPG === maxData);
 
         const texts = [
-            "Looking for large engine cylinders? Here are the cars with the most engine cylinders! These are cars with 8 or more cylinders. Feel free to hover over the circles to see more information.",
+            "Looking for a car with more engine cylinders? Here are the cars with the most engine cylinders! These are cars with 8 or more cylinders. Feel free to hover over the circles to see more information.",
             "As you can see, cars with the most engine cylinders also have the lowest city and highway MPG. That's something to keep in mind.",
             "In the last scene, you can use the top left dropdown to filter by car makes to see how much the same car make can differ in engine cylinders, city mpg, and highway mpg. You can also see the minimum and maximum average highway MPG of that car make when you filter.",
             "If you are looking for a specific make, play with this chart to see some more details on these cars. Click next scene to start using the filter. Have fun exploring!"
