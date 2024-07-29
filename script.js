@@ -78,7 +78,6 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
         const circles = svg.selectAll("circle")
         .data(filteredData, d => d.Make + d.AverageCityMPG + d.AverageHighwayMPG);  // Unique key function
 
-        // Enter new circles
         circles.enter()
             .append("circle")
             .attr("cx", d => xScale(d.AverageCityMPG))
@@ -206,6 +205,8 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
     function setupScene0() {
         svg.selectAll("*").remove();
 
+        d3.select("#nextSceneButton").attr("disabled", null);
+        dropdown.attr("disabled", true);
         const xAxis = d3.axisBottom(xScale)
             .tickValues([10, 20, 50, 100])
             .tickFormat(d3.format("~s"));
