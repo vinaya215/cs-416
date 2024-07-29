@@ -55,6 +55,8 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
         if (currentScene == 4) {
             currentScene = 0;
             d3.select("#nextSceneButton").text("Next");
+            d3.select("#nextSceneButton").attr("disabled", true);
+            dropdown.attr("disabled", true);
             setupScene0();
         }
     });
@@ -69,14 +71,12 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
         .attr("value", d => d)
         .text(d => d);
 
-    
-    // Function to update the chart based on selected make
     function updateChart(selectedMake, mustAnnotate) {
         const filteredData = selectedMake === "All" ? data : data.filter(d => d.Make === selectedMake);
         console.log(filteredData);
 
         const circles = svg.selectAll("circle")
-        .data(filteredData, d => d.Make + d.AverageCityMPG + d.AverageHighwayMPG);  // Unique key function
+        .data(filteredData, d => d.Make + d.AverageCityMPG + d.AverageHighwayMPG);
 
         circles.enter()
             .append("circle")
@@ -98,7 +98,7 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
                     .duration(500)
                     .style("opacity", 0);
             })
-            .merge(circles)  // Merge the enter selection with the update selection
+            .merge(circles)
             .transition()
             .duration(500)
             .attr("cx", d => xScale(d.AverageCityMPG))
@@ -147,9 +147,8 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
         console.log(filteredData);
 
         const circles = svg.selectAll("circle")
-        .data(filteredData, d => d.Make + d.AverageCityMPG + d.AverageHighwayMPG);  // Unique key function
+        .data(filteredData, d => d.Make + d.AverageCityMPG + d.AverageHighwayMPG);  
 
-        // Enter new circles
         circles.enter()
             .append("circle")
             .attr("cx", d => xScale(d.AverageCityMPG))
@@ -179,7 +178,6 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
             .attr("fill", "steelblue")
             .attr("opacity", 0.7);
 
-        // Remove circles that are no longer in the filtered data
         circles.exit().transition().duration(500).remove();
         svg.selectAll(".annotation").remove();
 
@@ -189,12 +187,11 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
             .attr("class", "annotation")
             .attr("font-size", "10px")
             .attr("fill", "black")
-            .text(`Makes with the Most Engine Cylinders: Aston Martin, Audi, Bentley, BMW, Dodge, Ferrari, Lamborghini, Mercendes Benz, and Rolls-Royce`);
+            .text(`Makes with the most Engine Cylinders: Aston Martin, Audi, Bentley, BMW, Dodge, Ferrari, Lamborghini, Mercendes Benz, and Rolls-Royce`);
 
 
     }
     
-    // Event listener for dropdown
     dropdown.on("change", function() {
         const selectedMake = this.value;
         console.log(selectedMake);
@@ -205,8 +202,6 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
     function setupScene0() {
         svg.selectAll("*").remove();
 
-        d3.select("#nextSceneButton").attr("disabled", null);
-        dropdown.attr("disabled", true);
         const xAxis = d3.axisBottom(xScale)
             .tickValues([10, 20, 50, 100])
             .tickFormat(d3.format("~s"));
@@ -579,7 +574,6 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
             .attr("fill", "black")
             .text(`Make: ${minCar.Make},  Engine Cylinders: ${minCar.EngineCylinders}, Avg City MPG: ${minCar.AverageCityMPG}, Avg Highway MPG: ${minCar.AverageHighwayMPG}`);
 
-        // Add arrow and text for max AverageHighwayMPG
         svg.append("line")
             .attr("x1", xScale(maxCar.AverageCityMPG))
             .attr("y1", yScale(maxCar.AverageHighwayMPG))
@@ -610,8 +604,7 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
             .append("path")
             .attr("d", "M 0 0 L 10 5 L 0 10 z")
             .attr("fill", "black");
-
-        //updateChart('All', false);
+            
         updateEngineCylinders();
         
     }
