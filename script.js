@@ -55,6 +55,7 @@ d3.csv("https://flunky.github.io/cars2017.csv").then(data => {
         if (currentScene == 4) {
             currentScene = 0;
             d3.select("#nextSceneButton").text("Next");
+            updateChart('All', false);
             setupScene0();
         }
     });
